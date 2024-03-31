@@ -29,6 +29,7 @@ import gulpAvif from "gulp-avif";
 // newer plugin
 import newer from "gulp-newer";
 
+
 // paths
 const paths = {
     pug: {
@@ -55,7 +56,11 @@ function clean() {
 }
 
 function styles() {
-    return src(paths.styles.src)
+    return src([
+            "node_modules/normalize.css/normalize.css",
+            "node_modules/slick-carousel/slick/slick.scss",
+            paths.styles.src
+        ])
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: "compressed"}).on("error", sass.logError))
         .pipe(autoprefixer())
@@ -66,7 +71,11 @@ function styles() {
 }
 
 function scripts() {
-    return src(paths.scripts.src)
+    return src([
+            "node_modules/jquery/dist/jquery.js",
+            "node_modules/slick-carousel/slick/slick.js",
+            paths.scripts.src
+        ])
         .pipe(concat("main.min.js"))
         .pipe(sourcemaps.init())
         .pipe(terser())
@@ -83,7 +92,7 @@ function html() {
 }
 
 function imagesToAvif() {
-    return src([paths.images.src, "!./app/images/src/**/*.svg"])
+    return src([paths.images.src, "!./app/images/**/*.svg"])
         .pipe(newer(paths.images.dest))
         .pipe(gulpAvif({quality: 50}))
         .pipe(dest(paths.images.dest));

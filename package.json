@@ -1,5 +1,5 @@
 {
-  "name": "gulp_setup",
+  "name": "go_surf",
   "version": "1.0.0",
   "scripts": {},
   "license": "ISC",
@@ -23,5 +23,10 @@
     "last 10 versions",
     "> 0.2%",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "normalize.css": "^8.0.1",
+    "slick-carousel": "^1.8.1"
+  }
 }
